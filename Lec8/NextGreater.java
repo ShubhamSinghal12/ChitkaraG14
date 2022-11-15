@@ -14,15 +14,17 @@ public class NextGreater {
 	public static int[] nextGreater(int[] arr)
 	{
 		int[] ans = new int[arr.length];
+		int cnt = 0;
 		Stack<Integer> st = new Stack<>();
 		for(int i = 0; i < arr.length; i++)
 		{
-			while(!st.isEmpty() && arr[st.peek()] < arr[i])
+			while(!st.isEmpty() && arr[st.peek()] > arr[i])
 			{
 				int ind = st.pop();
-				ans[ind] = arr[i];
+				ans[ind] = i-ind;
 			}
 			st.push(i);
+			cnt += st.size();
 		}
 		while(!st.isEmpty())
 		{
