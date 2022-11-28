@@ -161,4 +161,96 @@ public class MyLinkedLIst {
 		Node temp = getNodeAt(idx);
 		temp.data = ele;
 	}
+	
+	public void reverse()
+	{
+		Node prev = null;
+		Node cur = this.head;
+		while(cur != null)
+		{
+			Node ahead = cur.next;
+			cur.next = prev;
+			
+			prev = cur;
+			cur = ahead;
+		}
+		this.head = prev;
+	}
+	
+	public void revR()
+	{
+		revR(null,this.head);
+	}
+	public void revR2()
+	{
+		Node temp = this.head;
+		revR(this.head);
+		temp.next = null;
+	}
+	private void revR(Node prev,Node cur)
+	{
+		if(cur == null)
+		{
+			this.head = prev;
+			return;
+		}
+		else
+		{
+			revR(cur, cur.next);
+			cur.next = prev;
+		}
+	}
+	private void revR(Node prev)
+	{
+		if(prev.next == null)
+		{
+			this.head = prev;
+			return;
+		}
+		else
+		{
+			revR(prev.next);
+			prev.next.next = prev;
+		}
+	}
+	
+	public void bubblesort()
+	{
+		Node i = this.head;
+		while(i.next!=null)
+		{
+			Node j = this.head;
+			int swap = 0;
+			while(j.next!=null)
+			{
+				if(j.data > j.next.data)
+				{
+					int t = j.data;
+					j.data = j.next.data;
+					j.next.data = t;
+					swap++;
+				}
+				j = j.next;
+			}
+			if(swap == 0)
+			{
+				return;
+			}
+			i = i.next;
+		}
+	}
+	
+	public int mid()
+	{
+		Node slow = this.head;
+		Node fast = this.head;
+		while(fast.next!=null && fast.next.next!=null)
+		{
+			fast = fast.next.next;
+			slow = slow.next;
+		}
+		return slow.data;
+	}
+	
+	
 }

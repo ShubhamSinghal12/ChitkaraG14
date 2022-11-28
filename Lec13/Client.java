@@ -7,10 +7,14 @@ public class Client {
 		MyLinkedLIst ll = new MyLinkedLIst();
 		for(int i = 1; i <= 5;i++)
 		{
-			ll.addLast(i);
+			ll.addFirst(i);
 		}
 		ll.display();
+//		ll.bubblesort();
+//		ll.display();
+		System.out.println(ll.mid());
 
 	}
+	
 
 }
