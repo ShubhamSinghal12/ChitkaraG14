@@ -1,4 +1,5 @@
 package Lec13;
+
 public class MyLinkedLIst {
 
 	private class Node {
@@ -251,6 +252,170 @@ public class MyLinkedLIst {
 		}
 		return slow.data;
 	}
+	
+	private Node midN()
+	{
+		Node slow = this.head;
+		Node fast = this.head;
+		while(fast.next!=null && fast.next.next!=null)
+		{
+			fast = fast.next.next;
+			slow = slow.next;
+		}
+		return slow;
+	}
+	
+	public static MyLinkedLIst merge(MyLinkedLIst a,MyLinkedLIst b)
+	{
+		MyLinkedLIst ans = new MyLinkedLIst();
+		Node i = a.head;
+		Node j = b.head;
+		
+		while(i!=null&&j!=null)
+		{
+			if(i.data < j.data)
+			{
+				ans.addLast(i.data);
+				i = i.next;
+			}
+			else
+			{
+				ans.addLast(j.data);
+				j = j.next;
+			}
+		}
+		while(i!=null)
+		{
+			ans.addLast(i.data);
+			i = i.next;
+		}
+		while(j!=null)
+		{
+			ans.addLast(j.data);
+			j = j.next;
+		}
+		
+		return ans;
+	}
+	
+	public MyLinkedLIst merge2(MyLinkedLIst a,MyLinkedLIst b)
+	{
+		MyLinkedLIst ans = new MyLinkedLIst();
+		Node i = a.head;
+		Node j = b.head;
+		ans.head = new Node(0);
+		Node temp = ans.head;
+		while(i!=null&&j!=null)
+		{
+			if(i.data < j.data)
+			{
+//				ans.addLast(i.data);
+				temp.next = i;
+				i = i.next;
+				temp = temp.next;
+			}
+			else
+			{
+				temp.next = j;
+				j = j.next;
+				temp = temp.next;
+			}
+		}
+		if(i!=null)
+		{
+			temp.next = i;
+		}
+		if(j!=null)
+		{
+			temp.next = j;
+		}
+		
+		ans.head = ans.head.next;
+		return ans;
+	}
+	
+	public void mergeSort()
+	{
+		MyLinkedLIst sl = this.mergerSortH();
+		this.head = sl.head;
+	}
+	
+	private MyLinkedLIst mergerSortH()
+	{
+		if(this.size() <= 1)
+		{
+			MyLinkedLIst ll = new MyLinkedLIst();
+			ll.head = this.head;
+			return ll;
+		}
+		else
+		{
+			Node mid = this.midN();
+			MyLinkedLIst a = new MyLinkedLIst();
+			MyLinkedLIst b = new MyLinkedLIst();
+			a.head = this.head;
+			b.head = mid.next;
+			mid.next = null;
+			MyLinkedLIst sa = a.mergerSortH();
+			MyLinkedLIst sb = b.mergerSortH();
+			return merge(sa, sb);
+		}
+	}
+	
+	public void dummyList()
+	{
+//		MyLinkedList ll = new MyLinkedList();
+		Node n1 = new Node(1);
+		Node n2 = new Node(2);
+		Node n3 = new Node(3);
+		Node n4 = new Node(4);
+		Node n5 = new Node(5);
+		Node n6 = new Node(6);
+		Node n7 = new Node(7);
+		Node n8 = new Node(8);
+		
+		n1.next = n2;
+		n2.next = n3;
+		n3.next = n4;
+		n4.next = n5;
+		n5.next = n6;
+		n6.next = n7;
+		n7.next = n8;
+		n8.next = n3;
+		
+		this.head = n1;
+//		System.out.println(this.cycleDetect());
+//		this.display();
+		cycleDetectAndRemoval();
+		this.display();
+	}
+	
+	
+	public void cycleDetectAndRemoval()
+	{
+		Node slow = this.head;
+		Node fast = this.head;
+		
+		while(fast != null && fast.next != null)
+		{
+			slow = slow.next;
+			fast = fast.next.next;
+			
+			if(slow == fast)
+			{
+				break;
+			}
+		}
+		
+		slow = head;
+		while(slow.next != fast.next)
+		{
+			slow = slow.next;
+			fast = fast.next;
+		}
+		fast.next = null;
+	}
+	
 	
 	
 }
