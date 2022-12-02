@@ -46,7 +46,14 @@ public class Client {
 //		ll.mergeSort();
 //		ll.display();
 
-		ll.dummyList();
+//		ll.dummyList();
+		for(int i = 1; i <= 8; i++)
+		{
+			ll.addLast(i);
+		}
+		ll.display();
+		ll.kreverse(3);
+		ll.display();
 	}
 	
 

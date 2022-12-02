@@ -415,6 +415,41 @@ public class MyLinkedLIst {
 		}
 		fast.next = null;
 	}
+	public void kreverse(int k)
+	{
+		this.head = kreverse(this.head, k);
+	}
+	private Node kreverse(Node h,int k)
+	{
+		if(h == null)
+		{
+			return null;
+		}
+		else
+		{
+			Node temp = h;
+			for(int i = 1; i <= k; i++)
+			{
+				if(temp == null)
+				{
+					return h;
+				}
+				temp = temp.next;
+			}
+			Node prev = kreverse(temp, k);
+			Node cur = h;
+			while(cur != temp)
+			{
+				Node ahead = cur.next;
+				cur.next = prev;
+				
+				prev = cur;
+				cur = ahead;
+			}
+			return prev;
+		}
+	}
+	
 	
 	
 	
