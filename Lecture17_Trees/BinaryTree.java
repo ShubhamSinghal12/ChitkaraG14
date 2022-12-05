@@ -75,5 +75,53 @@ public class BinaryTree {
 			display(r.right);
 		}
 	}
-
+	
+	public boolean find(int ele)
+	{
+		return this.find(root,ele);
+	}
+	private boolean find(Node r,int ele)
+	{
+		if(r == null)
+		{
+			return false;
+		}
+		else
+		{
+			return r.data == ele || find(r.left, ele) || find(r.right, ele);
+		}
+	}
+	
+	public int size()
+	{
+		return this.size(root);
+	}
+	private int size(Node r)
+	{
+		if(r == null)
+		{
+			return 0;
+		}
+		else
+		{
+			return 1+size(r.left)+size(r.right);
+		}
+	}
+	
+	public int max()
+	{
+		return this.max(root);
+	}
+	private int max(Node r)
+	{
+		if(r == null)
+		{
+			return Integer.MIN_VALUE;
+		}
+		else
+		{
+			return Math.max(r.data,Math.max(max(r.left),max(r.right)));
+		}
+	}
+	
 }
