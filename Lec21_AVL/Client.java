@@ -8,6 +8,10 @@ public class Client {
 		for(int i = 1; i <= 10; i++)
 			at.insert(i);
 		at.display();
+		at.delete(1);
+		at.delete(3);
+		System.out.println("----------------------");
+		at.display();
 
 	}
 
