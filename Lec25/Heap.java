@@ -75,7 +75,6 @@ public class Heap {
 			swap(pi,min);
 			downheapify(min);
 		}
-		
 	}
 	
 	public void display()
