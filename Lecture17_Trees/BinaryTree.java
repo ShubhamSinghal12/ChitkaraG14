@@ -1,5 +1,9 @@
 package Lecture17_Trees;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -254,6 +258,44 @@ public class BinaryTree {
 				System.out.print(qt.peek().data+" ");
 				ct = qt.size();
 			}
+		}
+	}
+	
+	
+	
+	public void verticalOrder()
+	{
+		HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
+		vo(root, 0, map);
+		ArrayList<Integer> keys = new ArrayList<>(map.keySet());
+		Collections.sort(keys);
+		
+		for(int key:keys)
+		{
+			System.out.println(key+" : "+map.get(key));
+		}
+		
+	}
+	
+	private void vo(Node r,int lvl,HashMap<Integer, ArrayList<Integer>> map)
+	{
+		if(r == null)
+		{
+			return;
+		}
+		else
+		{
+			if(map.containsKey(lvl))
+			{
+				map.get(lvl).add(r.data);
+			}
+			else
+			{
+				map.put(lvl, new ArrayList<>(Arrays.asList(r.data)));
+			}
+			
+			vo(r.left, lvl-1,map);
+			vo(r.right,lvl+1,map);
 		}
 	}
 	

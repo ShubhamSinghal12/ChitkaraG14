@@ -11,6 +11,7 @@ public class Client {
 		bt.createTree2();
 //		System.out.println(bt.ht());
 //		bt.leftView();
+		bt.verticalOrder();
 
 	}
 
